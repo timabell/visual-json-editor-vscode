@@ -3,8 +3,10 @@
  */
 
 .editable-text {
-    /* Show all whitespace in names and values */
-    white-space: pre;
+    /* Show all whitespace in names and values, but wrap long lines */
+    white-space: pre-wrap;
+    /* Break long unbroken strings (URLs, tokens) so they wrap too */
+    overflow-wrap: anywhere;
 }
 
 .clickable {
