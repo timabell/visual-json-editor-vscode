@@ -1,0 +1,7 @@
+# mise tool configuration — https://mise.jdx.dev
+# Pins the toolchain used to build and test the extension.
+# Versions mirror .github/workflows/ci.yml and package.json.
+
+[tools]
+bun = "1.3.6"  # keep in sync with ci.yml (oven-sh/setup-bun) and the bun devDependency
+node = "20"    # matches @types/node 20.x; used by vscode-test
