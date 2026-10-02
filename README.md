@@ -65,6 +65,42 @@ This extension contributes the following settings:
 * `visual-json.outputPrettiness`: Number of space characters to indent saved JSON files by, or 0 to save in one line. Defaults to 2 spaces. (This gets passed as the [`space` parameter of `JSON.stringify()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#space).)
 * `visual-json.maxFileSize`: Maximum file size (in kilobytes) the editor will open before displaying an error message. Defaults to 256 KB.
 
+## Building & Running from Source
+
+### Prerequisites
+
+This project builds with [Bun](https://bun.sh). The toolchain is pinned in `mise.toml`, so if you use [mise](https://mise.jdx.dev) you can just run `mise install` to get the right Bun and Node versions. Otherwise, install Bun 1.3.6 (or newer) manually.
+
+Install dependencies once:
+
+```sh
+bun install
+```
+
+### Run in a development window (F5)
+
+1. Open this folder in VS Code.
+2. Press <kbd>F5</kbd> (or Run → "Run Extension").
+
+This builds the extension (`bun run compile`) and opens a second VS Code window — the Extension Development Host — with the extension loaded. Open any `.json` file there to use the editor.
+
+While developing:
+* Edited a `.ts` file? Press <kbd>F5</kbd> again to rebuild and relaunch.
+* Edited only CSS (in `media/`)? It's served as-is — just reload the dev window with <kbd>Ctrl</kbd>+<kbd>R</kbd> (<kbd>Cmd</kbd>+<kbd>R</kbd> on macOS).
+
+### Install from source for ongoing use
+
+To use your local build as a regular installed extension (not just in the dev window), package it into a `.vsix` and install that:
+
+```sh
+bunx vsce package        # produces visual-json-<version>.vsix (runs a production build first)
+code --install-extension visual-json-*.vsix
+```
+
+Alternatively, install the `.vsix` from the UI: Extensions view → `...` menu → "Install from VSIX…".
+
+To update later, re-run the two commands above; to uninstall, remove it from the Extensions view like any other extension.
+
 ## Known Issues
 
 * The same file cannot be open in multiple instances of the editor. This was done intentionally to avoid the complexity of syncing state between them.
